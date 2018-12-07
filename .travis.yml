@@ -29,7 +29,6 @@ jobs:
   fast_finish: true
 script:
 - 'echo Running $TEST_SCRIPT'
-- '[[ "$FAIL" == "true" ]] && exit 1'
 before_install: []
 before_script: []
 after_script: []
