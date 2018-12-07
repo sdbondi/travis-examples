@@ -11,7 +11,6 @@ jobs:
     name: Test Other
     env:
     - TEST_SCRIPT="run-other-tests.sh"
-    - FAIL=true
   - stage: test
     name: Test Postman
     env:
