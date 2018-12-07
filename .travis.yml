@@ -1,0 +1,40 @@
+language: rust
+rust:
+- stable
+branches:
+  only:
+  - master
+jobs:
+  include:
+  - stage: test
+    name: Test API
+    env:
+    - TEST_SCRIPT="run-api-tests.sh"
+  - stage: test
+    name: Test Other
+    env:
+    - TEST_SCRIPT="run-other-tests.sh"
+  - stage: test
+    name: Test Postman
+    env:
+    - TEST_SCRIPT="run-integration-tests.sh"
+  - stage: test
+    name: Cargo Audit
+    env:
+    - TEST_SCRIPT="run-cargo-audit.sh"
+  - stage: deploy
+    script: skip
+    deploy:
+      provider: script
+      scripts: echo "Deploy stage"
+      on:
+        branch: master
+  fast_finish: true
+script:
+- "echo Running $TEST_SCRIPT"
+before_install: []
+before_script: []
+after_script: []
+env:
+  global:
+  - ENV="production"
