@@ -29,6 +29,7 @@ matrix:
   fast_finish: true
 script:
 - 'echo Running $TEST_SCRIPT'
+- 'exit 1'
 before_install: []
 before_script: []
 after_script: []
