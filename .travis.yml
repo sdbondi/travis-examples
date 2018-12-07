@@ -14,6 +14,7 @@ jobs:
     name: Test Other
     env:
     - TEST_SCRIPT="run-other-tests.sh"
+    - FAIL=true
   - stage: test
     name: Test Postman
     env:
@@ -26,12 +27,13 @@ jobs:
     script: skip
     deploy:
       provider: script
-      scripts: echo "Deploy stage"
+      script: echo "Deploy stage"
       on:
         branch: master
   fast_finish: true
 script:
-- "echo Running $TEST_SCRIPT"
+- 'echo Running $TEST_SCRIPT'
+- '[[ "$FAIL" == "true" ]] && exit 1'
 before_install: []
 before_script: []
 after_script: []
